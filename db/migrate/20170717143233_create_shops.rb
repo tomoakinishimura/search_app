@@ -2,7 +2,7 @@ class CreateShops < ActiveRecord::Migration
   def change
     create_table :shops do |t|
       t.string :name
-      t.string :status
+      t.integer :status_id
       t.string :url
       t.string :phone
 

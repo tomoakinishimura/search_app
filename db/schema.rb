@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20170717143233) do
 
   create_table "shops", force: :cascade do |t|
     t.string   "name"
-    t.string   "status"
+    t.integer  "status_id"
     t.string   "url"
     t.string   "phone"
     t.datetime "created_at", null: false
