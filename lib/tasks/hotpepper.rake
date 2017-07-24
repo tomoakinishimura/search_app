@@ -29,6 +29,8 @@ namespace :hotpepper do
       shop_list.each do |node|
         # shop name
         shop_name = node.xpath('.//dt').text
+        shop_code = node.css('a')[0][:href].delete("/")
+
         keyword = shop_name + " 会社"
 
         result = GoogleSearch.new.snipet_scraping(keyword) 
@@ -53,9 +55,13 @@ namespace :hotpepper do
           #  title.slice!(/株式会社*/)
           #else
           #end
-
-          shop = Shop.new(name:shop_name, url:company_url, status:Status.find(1))
-          if shop.save!
+          shop = Shop.find_or_initialize_by(shop_code:shop_code)
+          if shop.new_record?
+            shop.name = shop_name
+            shop.shop_code = shop_code
+            shop.url = company_url
+            shop.status = Status.find(1)
+            shop.save!
             print "COMPANY:#{shop_name} URL:#{company_url} save ok!!!!!!!!!"
           end
 

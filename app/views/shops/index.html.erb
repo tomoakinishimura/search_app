@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Shops</h1>
+<h1>飲食店リスト</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Status</th>
-      <th>Url</th>
+      <th>飲食店名</th>
+      <th>ステータス</th>
+      <th>URL</th>
       <th>Phone</th>
       <th colspan="3"></th>
     </tr>
@@ -17,17 +17,16 @@
     <% @shops.each do |shop| %>
       <tr>
         <td><%= shop.name %></td>
-        <td><%= shop.status %></td>
-        <td><%= shop.url %></td>
+        <td><%= shop.status.name %></td>
+        <td><%= link_to shop.url, shop.url, :target=>["_blank"] %></td>
         <td><%= shop.phone %></td>
-        <td><%= link_to 'Show', shop %></td>
-        <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
-        <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '表示', shop %></td>
+        <td><%= link_to '編集', edit_shop_path(shop) %></td>
+        <td><%= link_to '削除', shop, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Shop', new_shop_path %>
+<%#= link_to 'New Shop', new_shop_path %>
